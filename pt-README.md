@@ -2,8 +2,6 @@
 
 <blockquote align="center">Extensão para silencia sua aba do Google Meet</blockquote>
 
-</br>
-
 # Como instalar
 
 ## Baixando

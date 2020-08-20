@@ -2,11 +2,7 @@
 
 <blockquote align="center">Extension to mute your Google Meet tab</blockquote>
 
-</br>
-
 <strong>Languages:</strong> <a href="./pt-README.md">Portuguese</a>
-
-</br>
 
 # How to install
 
