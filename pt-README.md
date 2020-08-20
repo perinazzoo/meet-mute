@@ -1,6 +1,6 @@
 <h1 align="center">Extensão Meet Mute</h1>
 
-<blockquote align="center">Extensão para silencia sua aba do Google Meet</blockquote>
+<blockquote align="center">Extensão para silenciar sua aba do Google Meet</blockquote> 
 
 # Como instalar
 
