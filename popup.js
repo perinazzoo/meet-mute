@@ -70,13 +70,11 @@ function checkIfHasVolume() {
 
 function changeVolumePercentage(value) {
   const number = String(value).replace('0.', '');
-  volumeInput.value = value;
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    chrome.tabs.executeScript(
-      tabs[0].id,
-      { code: "console.log('test')" },
-    )
-  });
+
+  if (volumeInput.value !== value) {
+    volumeInput.value = value;
+  }
+
   if (value < 1) {
     const finalNumber = `${number}${number.length < 2 ? number === '0' ? '' : '0' : ''}%`;
     percentage.innerHTML = finalNumber.startsWith('0') && finalNumber !== '0%' ? finalNumber.replace('0', '') : finalNumber;
