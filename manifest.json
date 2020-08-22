@@ -1,6 +1,6 @@
 {
   "name": "Meet Mute",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Extensão para silenciar a aula e não precisar baixar o volume do navegador.",
   "permissions": [
     "declarativeContent",

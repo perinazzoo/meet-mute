@@ -1,4 +1,6 @@
 let mute = document.querySelector("#mute");
+let volumeInput = document.querySelector("#volume");
+let percentage = document.querySelector("#percentage");
 let volume;
 
 const code = `(function getUrls(){
@@ -10,6 +12,16 @@ const code = `(function getUrls(){
 })()`;
 
 window.onload = function () {
+  checkIfHasVolume();
+}
+
+volumeInput.onchange = (e) => {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.executeScript(
+      tabs[0].id,
+      { code: `document.querySelectorAll("audio").forEach((aud) => aud.volume = ${e.target.value})` });
+  });
+
   checkIfHasVolume();
 }
 
@@ -40,7 +52,10 @@ function callBackAudioList(result) {
 
   mute.innerHTML = volume ? 'Mute' : 'Unmute';
 
+  const volumePercentage = audioList[0]
+
   changeColor();
+  changeVolumePercentage(volumePercentage);
 }
 
 function checkIfHasVolume() {
@@ -51,4 +66,22 @@ function checkIfHasVolume() {
       callBackAudioList
     )
   });
+}
+
+function changeVolumePercentage(value) {
+  const number = String(value).replace('0.', '');
+  volumeInput.value = value;
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.executeScript(
+      tabs[0].id,
+      { code: "console.log('test')" },
+    )
+  });
+  if (value < 1) {
+    const finalNumber = `${number}${number.length < 2 ? number === '0' ? '' : '0' : ''}%`;
+    percentage.innerHTML = finalNumber.startsWith('0') && finalNumber !== '0%' ? finalNumber.replace('0', '') : finalNumber;
+    return;
+  }
+
+  percentage.innerHTML = `${number}00%`;
 }
